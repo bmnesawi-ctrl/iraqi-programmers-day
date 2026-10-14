@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>توثيق حضور احتفالية يوم المبرمج العراقي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050B1F;--card:#0E1840;--line:#24336f;--text:#EAF0FF;--muted:#9fb0e0;--blue:#2F6BFF;--cyan:#22D3EE;--violet:#8B5CF6;--err:#ff6b81}
+*{box-sizing:border-box}
+body{margin:0;font-family:Cairo,system-ui,sans-serif;color:var(--text);min-height:100vh;padding:24px 16px 48px;
+background:radial-gradient(600px 300px at 85% -50px,rgba(139,92,246,.35),transparent),radial-gradient(700px 400px at 10% 0,rgba(47,107,255,.3),transparent),var(--bg)}
+main{max-width:520px;margin:0 auto}
+h1{font-size:clamp(1.8rem,6vw,2.4rem);font-weight:900;margin:20px 0 4px;line-height:1.3}
+.tag{color:var(--cyan);font-weight:700;margin:0 0 6px;font-size:1.1rem}
+.lead{color:var(--muted);margin:0 0 22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+label,.lbl{display:block;font-weight:700;margin:16px 0 6px}
+form>label:first-child{margin-top:0}
+input[type=text],input[type=tel],select,textarea{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:#0a1233;color:var(--text);font:inherit}
+textarea{resize:vertical;min-height:100px}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--cyan);outline-offset:1px}
+.hint{color:var(--muted);font-size:.85rem;margin:5px 0 0}
+.err{color:var(--err);font-size:.88rem;margin:5px 0 0}
+.phone{display:grid;grid-template-columns:130px 1fr;gap:8px;direction:ltr}
+.phone select,.phone input{direction:ltr;text-align:left}
+.radios{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.radios label{margin:0;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border:1px solid var(--line);border-radius:12px;cursor:pointer;background:#0a1233;font-weight:700}
+.radios input{accent-color:var(--cyan);width:18px;height:18px}
+.radios label:has(input:checked){border-color:var(--cyan);background:rgba(34,211,238,.1)}
+button.main{width:100%;margin-top:22px;padding:15px;border:0;border-radius:14px;font:inherit;font-weight:900;font-size:1.1rem;color:#fff;cursor:pointer;background:linear-gradient(90deg,var(--blue),var(--violet))}
+button.main:disabled{opacity:.6;cursor:wait}
+.banner{border-radius:12px;padding:12px 14px;margin-top:14px;font-weight:600;background:rgba(255,107,129,.12);border:1px solid var(--err)}
+.hidden{display:none!important}
+.success{text-align:center}
+.num{font-size:2rem;font-weight:900;letter-spacing:2px;direction:ltr;color:var(--cyan);margin:12px 0}
+.success button{padding:10px 18px;border-radius:10px;border:1px solid var(--cyan);background:transparent;color:var(--cyan);font:inherit;font-weight:700;cursor:pointer}
+</style>
+</head>
+<body>
+<main>
+  <p class="tag">احتفالية يوم المبرمج العراقي</p>
+  <h1>توثيق الحضور والمشاركة</h1>
+  <p class="lead">شكرًا لحضورك ومشاركتك في احتفالية يوم المبرمج العراقي. يرجى تعبئة البيانات التالية لتوثيق حضورك.</p>
+
+  <section class="card" id="formCard">
+    <form id="form" novalidate autocomplete="off">
+      <label for="name">الاسم الرباعي</label>
+      <input type="text" id="name" placeholder="أدخل اسمك الرباعي" maxlength="100">
+      <p class="err" id="e-name"></p>
+
+      <span class="lbl">رقم الهاتف (واتساب)</span>
+      <div class="phone">
+        <select id="dial" aria-label="رمز الدولة"></select>
+        <input type="tel" id="phone" inputmode="tel" placeholder="7701234567" maxlength="20">
+      </div>
+      <p class="hint">يرجى إدخال رقم هاتف فعال مرتبط بتطبيق واتساب</p>
+      <p class="err" id="e-phone"></p>
+
+      <label for="gov">اختر المحافظة أو مكان الإقامة</label>
+      <select id="gov"></select>
+      <p class="err" id="e-gov"></p>
+
+      <div id="countryWrap" class="hidden">
+        <label for="country">الدولة التي تقيم فيها</label>
+        <input type="text" id="country" placeholder="مثال: ألمانيا" maxlength="60">
+        <p class="err" id="e-country"></p>
+      </div>
+
+      <fieldset style="border:0;padding:0;margin:0">
+        <legend class="lbl" style="padding:0;margin-top:16px">هل أنت منتمٍ للنقابة؟</legend>
+        <div class="radios">
+          <label><input type="radio" name="union" value="نعم"> نعم</label>
+          <label><input type="radio" name="union" value="كلا"> كلا</label>
+        </div>
+      </fieldset>
+      <p class="err" id="e-union"></p>
+
+      <label for="impression">ما انطباعك عن الاحتفالية؟ <span style="font-weight:400;color:var(--muted)">(اختياري)</span></label>
+      <textarea id="impression" rows="4" maxlength="500" placeholder="شاركنا رأيك وانطباعك عن الاحتفالية وما أعجبك فيها أو ما تقترح تحسينه"></textarea>
+      <p class="hint"><span id="cnt">0</span> / 500</p>
+
+      <div class="banner hidden" id="banner" role="alert"></div>
+      <button class="main" id="submit" type="submit">ارسال البيانات</button>
+    </form>
+  </section>
+
+  <section class="card success hidden" id="success" role="status">
+    <h2 style="margin:0">تم توثيق حضورك بنجاح</h2>
+    <p>تم توثيق حضورك ومشاركتك في احتفالية يوم المبرمج العراقي. شكرًا لك!</p>
+    <div class="num" id="regNum"></div>
+    <button type="button" id="copy">نسخ رقم التوثيق</button>
+  </section>
+</main>
+
+<script>
+// ===== ضع هنا رابط Google Apps Script بعد نشره (انظر README) =====
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbweRnqYtTJPJSiTTl9Vns8SoXnKnZVpBmt0DVaLJDt5mDXwiqmQNe36P0kt2fgTgkFg/exec';
+// ==================================================================
+
+const GOVS=['أربيل','الأنبار','بابل','بغداد','البصرة','حلبجة','دهوك','ديالى','ذي قار','السليمانية','صلاح الدين','القادسية','كربلاء','كركوك','المثنى','ميسان','النجف','نينوى','واسط'];
+const OUT='خارج العراق';
+const DIAL=[['العراق','+964'],['السعودية','+966'],['الإمارات','+971'],['الكويت','+965'],['قطر','+974'],['البحرين','+973'],['عُمان','+968'],['الأردن','+962'],['لبنان','+961'],['سوريا','+963'],['مصر','+20'],['تركيا','+90'],['إيران','+98'],['ألمانيا','+49'],['السويد','+46'],['هولندا','+31'],['بريطانيا','+44'],['فرنسا','+33'],['أمريكا/كندا','+1'],['أستراليا','+61'],['أخرى','']];
+const $=id=>document.getElementById(id);
+
+$('gov').innerHTML='<option value="">اختر المحافظة أو مكان الإقامة</option>'+[...GOVS,OUT].map(g=>`<option>${g}</option>`).join('');
+$('dial').innerHTML=DIAL.map(([n,d])=>`<option value="${d}">${d||'+'} ${n}</option>`).join('');
+$('gov').onchange=()=>{const o=$('gov').value===OUT;$('countryWrap').classList.toggle('hidden',!o);if(!o)$('country').value=''};
+
+// الأرقام العربية → إنجليزية
+const digits=s=>s.replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
+
+const errs=['name','phone','gov','country','union'];
+const setErr=(k,m)=>$('e-'+k).textContent=m||'';
+
+$('form').onsubmit=async e=>{
+  e.preventDefault();
+  errs.forEach(k=>setErr(k,''));$('banner').classList.add('hidden');
+  const name=$('name').value.replace(/\s+/g,' ').trim();
+  let phone=digits($('phone').value).replace(/[\s\-()]/g,'').replace(/^0+/,'');
+  const dial=$('dial').value, gov=$('gov').value, country=$('country').value.trim();
+  const union=document.querySelector('input[name=union]:checked');
+  let bad=false;
+  if(name.split(' ').filter(Boolean).length<3){setErr('name','يرجى إدخال الاسم كاملًا.');bad=true}
+  if(!/^\d{6,15}$/.test(phone)){setErr('phone','يرجى إدخال رقم هاتف صالح (أرقام فقط).');bad=true}
+  if(!gov){setErr('gov','يرجى اختيار المحافظة أو مكان الإقامة.');bad=true}
+  if(gov===OUT&&!country){setErr('country','يرجى كتابة الدولة التي تقيم فيها.');bad=true}
+  if(!union){setErr('union','يرجى الإجابة عن هذا السؤال.');bad=true}
+  if(bad)return;
+
+  const full=(dial?dial+phone:'+'+phone);
+  const btn=$('submit');btn.disabled=true;btn.textContent='جارٍ الحفظ...';
+  try{
+    const res=await fetch(SCRIPT_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify({name,phone:full,governorate:gov,country:gov===OUT?country:'',union:union.value,impression:$('impression').value.trim()})});
+    const data=await res.json();
+    if(data.ok){
+      $('formCard').classList.add('hidden');$('success').classList.remove('hidden');
+      $('regNum').textContent=data.registration_number;window.scrollTo({top:0,behavior:'smooth'});
+    }else{$('banner').textContent=data.message||'حدث خطأ. حاول مرة أخرى.';$('banner').classList.remove('hidden')}
+  }catch(_){
+    $('banner').textContent='تعذر الاتصال. تحقق من الإنترنت وأعد المحاولة.';$('banner').classList.remove('hidden');
+  }finally{btn.disabled=false;btn.textContent='ارسال البيانات'}
+};
+$('impression').oninput=()=>$('cnt').textContent=$('impression').value.length;
+$('copy').onclick=async()=>{try{await navigator.clipboard.writeText($('regNum').textContent);$('copy').textContent='تم النسخ ✓'}catch(_){$('copy').textContent='انسخه يدويًا'}};
+</script>
+</body>
+</html>
